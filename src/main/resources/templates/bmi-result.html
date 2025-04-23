@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Result</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Your BMI Result</h1>
+    <div class="result">
+        <p>Your BMI is: <span th:text="${bmi.bmiValue}"></span></p>
+        <p>Category: <span th:text="${bmi.category}"></span></p>
+    </div>
+    <div class="actions">
+        <a th:href="@{/bmi-form}" class="btn">Calculate Again</a>
+        <a th:href="@{/index}" class="btn">Home</a>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: "Poppins", Arial, sans-serif;
+        }
+        /* Fixed Navbar */
+        .navbar {
+            background-color: #222 !important;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar .nav-link, .navbar .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+        }
+        /* WHITE TOGGLE ICON */
+        .navbar-toggler {
+            border: none;
+            outline: none;
+        }
+        .navbar-toggler-icon {
+            filter: invert(1); /* Makes the icon white */
+        }
+        /* Blog Container */
+        .blog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding-top: 100px; /* Space for fixed navbar */
+        }
+        /* Blog Card */
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0056b3, #004097);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Dwarka Fitness Club</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addBlog">Add Blog</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Blog List -->
+<div class="container mt-4">
+    <div class="blog-container">
+        <div class="card mb-4" th:each="blog : ${blogPosts}">
+            <img th:if="${blog.base64Image}"
+                 th:src="'data:' + ${blog.imageType} + ';base64,' + ${blog.base64Image}"
+                 class="card-img-top"
+                 alt="Blog Image" />
+            <div class="card-body">
+                <h5 class="card-title" th:text="${blog.blogProfile}"></h5>
+                <p class="card-text" th:text="${#strings.abbreviate(blog.blogDesc, 100)}"></p>
+                <a th:href="@{'/blog/' + ${blog.blogId}}" class="btn btn-primary">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

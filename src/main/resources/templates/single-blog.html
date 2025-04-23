@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${blog.blogProfile}"></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: "Poppins", Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Fixed Navbar */
+        .navbar {
+            background-color: #222 !important;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar .nav-link, .navbar .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+        }
+        /* White Toggle Icon */
+        .navbar-toggler {
+            border: none;
+            outline: none;
+        }
+        .navbar-toggler-icon {
+            filter: invert(1); /* Makes the icon white */
+        }
+        /* Blog Container */
+        .blog-container {
+            max-width: 900px;
+            margin: 100px auto 20px; /* Space for fixed navbar */
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .blog-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        /* Blog Title */
+        .blog-title {
+            font-size: 2.3rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        /* Blog Image */
+        .blog-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* Blog Content */
+        .blog-content {
+            line-height: 1.5;
+            color: #444;
+            padding: 20px;
+            background: #f1f1f1;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-family: "Open Sans", sans-serif;
+        }
+        /* Back Button */
+        .btn-back {
+            display: block;
+            width: 170px;
+            margin: 25px auto;
+            text-align: center;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-back:hover {
+            background: linear-gradient(135deg, #0056b3, #004097);
+            transform: scale(1.05);
+        }
+        /* Fix navbar button alignment */
+        .navbar-nav .nav-item {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-nav form {
+            margin: 0;
+        }
+        .navbar-nav .nav-link {
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Dwarka Fitness Club</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/blog">Blogs</a></li>
+                <li class="nav-item">
+                    <form th:action="@{'/delete/' + ${blog.blogId}}" method="post"
+                          onsubmit="return confirm('Are you sure you want to delete this blog?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="nav-link btn btn-link text-white" style=" text-decoration: none;">Delete Blog</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Blog Content -->
+<div class="container mt-4">
+    <div class="blog-container">
+        <p class="class-text" th:text="'Blog ID ' + ${blog.blogId}"></p>
+        <h2 class="blog-title" th:text="${blog.blogProfile}"></h2>
+
+        <img th:if="${blog.base64Image}"
+             th:src="'data:' + ${blog.imageType} + ';base64,' + ${blog.base64Image}"
+             class="blog-image"
+             alt="Blog Image" />
+
+        <div class="blog-content">
+            <p th:text="${blog.blogDesc}"></p>
+        </div>
+
+        <a href="/blog" class="btn-back">Back to Blogs</a>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
