@@ -1241,98 +1241,6 @@ footer {
   padding-top: 10px;
 }
 
-
-/* Bmi Calculator  Styling */
-#bmi-calculator {
-  background: #333;
-  background-image: url("https://dust2glory.fitness/wp-content/uploads/2022/04/Fitness-Pattern-1170x1170.png");
-  background-position: no-repeat;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5rem;
-}
-/* Container */
-.container-bmi {
-  background-color: #fff;
-    padding: 30px;
-    width: 400px;
-    border-radius: 5px;
-    box-shadow: 25px 25px 30px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-/* Header */
-.container-bmi h1 {
-    background: #024b94;
-    color: white;
-    font-size: 23px;
-    letter-spacing: 1px;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-
-/* Display Box */
-.display {
-    box-shadow: 0 0 20px rgba(0, 139, 253, 0.25);
-    padding: 15px;
-    margin-bottom: 40px;
-}
-
-#result {
-    font-size: 30px;
-    font-weight: 700;
-    color: #0be881;
-}
-
-#category {
-    font-size: 18px;
-    letter-spacing: 1px;
-}
-
-/* Range Inputs */
-.row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.row span {
-    font-weight: 500;
-}
-
-input[type="range"] {
-    width: 70%;
-    height: 3.5px;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #dcdcdc;
-    border-radius: 3px;
-    outline: none;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 15px;
-    width: 15px;
-    background-color: #1c1c1c;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-@media(max-width:768px),(max-width:480px),(max-width:320px)  {
-  .container-bmi {
-    width: 100%;
-  }
-  #bmi-calculator {
-    padding: 3rem;
-  }
-}
-
 /*Gallery Style*/
 #gallery-image {
   width: 100%;
@@ -1374,3 +1282,4 @@ input[type="range"]::-webkit-slider-thumb {
   object-fit: cover;
 }
 
+git a
