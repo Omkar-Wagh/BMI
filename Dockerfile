@@ -1,6 +1,12 @@
+# Start from Maven + JDK image to build the JAR
+FROM maven:3.8.5-openjdk-17-slim AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+# Use a lightweight JDK image to run the app
 FROM openjdk:17-jdk-slim
-VOLUME /tmp
-COPY target/*.jar dwarka.jar
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 EXPOSE 8080
-
